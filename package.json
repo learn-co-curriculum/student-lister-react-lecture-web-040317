@@ -1,0 +1,16 @@
+{
+  "name": "student-lister-react",
+  "version": "1.0.0",
+  "description": "## What was hard about building an app with just jQuery?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ian Candy",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}
