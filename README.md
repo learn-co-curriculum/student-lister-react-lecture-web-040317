@@ -1,15 +1,13 @@
-# State!
+# Async React!
 
-+ What components will need state?
+Before lecture, please do your best to complete the following challenge. We'll go over this together in lecture today.
 
-### What's the difference between props and state?
+The challenge: [here is an API](https://github.com/learn-co-curriculum/student-lister-api-web-040317) that has a list of students at `/api/v1/students`.
 
-1. Props don't change - state can be changed
-2. Use state for things that can change / need to be updated
-   + Value of a text field - but other constraints - properties of the form, don't need to change
-3. Props are given to a component - state is defined within the component
-4. Parents communicate to their children via props
+Pull down the most recent verison of our Student Lister [Here](https://github.com/learn-co-curriculum/student-lister-react-lecture-web-040317). Instead of starting with our hard-coded list of students, we want to pull a list of students from the API.
 
-### How many components in our app should have state?
+This means that, whenever the StudentPage mounts, we should make a web request to '/api/v1/students' to load the data and then update our list of students. You may need to make some changes to how we're storing state.
 
-+ As few as possible 
+### BONUS
+
+If you have the list showing up, we also should make a post request each time we submit our form to create a new student. 
