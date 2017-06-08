@@ -1,16 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import NavBar from './components/NavBar'
-import StudentsPage from './components/StudentsPage'
+import Main from './components/Main'
 
-function App(){
-  return (
-    <div>
-      <NavBar title="Ian Rules!" style='inverse'/>
-      < StudentsPage />
-    </div>
-  )
-}
-
-ReactDOM.render(< App /> , document.getElementById('root'))
+ReactDOM.render(< Main /> , document.getElementById('root'))
