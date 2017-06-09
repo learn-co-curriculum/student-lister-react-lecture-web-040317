@@ -38,7 +38,7 @@ export default class StudentsPage extends Component {
     })
   }
 
-  componentDidMount(){
+  componentWillMount(){
     fetch('http://localhost:3000/api/v1/students')
       .then(response => response.json())
       .then(responseJSON => this.createStudentsFromAPI(responseJSON))
