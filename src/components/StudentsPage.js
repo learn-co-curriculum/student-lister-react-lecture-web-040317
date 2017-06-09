@@ -21,14 +21,6 @@ export default class StudentsPage extends Component {
       .then( data => this.setState({ students: data}) )
   }
 
-  addFido(){
-    this.setState(function( previousState ){
-      return {
-        students: [...previousState.students, "Fido"]
-      }
-    })
-  }
-
   createStudent(name){
     // here's where i want to make the post request to save the data...
     fetch('http://localhost:3000/api/v1/students', {
@@ -54,7 +46,6 @@ export default class StudentsPage extends Component {
       <div className='row'>
         <div className='col-md-4'>
           < StudentsList students={this.state.students} />
-          <button onClick={this.addFido}>Add Fido</button>
         </div>
         <div className='col-md-8'>
           < StudentForm onSubmit={this.createStudent}/>
