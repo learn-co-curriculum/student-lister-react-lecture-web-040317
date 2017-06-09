@@ -5,7 +5,7 @@ export default function StudentsList(props){
     <div>
       <h2>Students List</h2>
       <ul>
-        { props.students.map(student => <li>{ student }</li>)}
+        { props.students.map(student => <li>{ student.name }</li>)}
       </ul>
     </div>
   )

@@ -25,16 +25,26 @@ export default class StudentsPage extends Component {
   }
 
   createStudent(name){
-    this.setState(function(previousState){
-      return {
-        students: [...previousState.students, name]
-      }
+    fetch('http://localhost:3000/api/v1/students', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify({name: name})
     })
+      .then(response => response.json())
+      .then(student => this.setState(function(previousState){
+          return {
+            students: [...previousState.students, student]
+          }
+        })
+      )
   }
 
   createStudentsFromAPI(responseJSON){
     this.setState({
-      students: responseJSON.map(student => student.name)
+      students: responseJSON.map(student => student)
     })
   }
 
