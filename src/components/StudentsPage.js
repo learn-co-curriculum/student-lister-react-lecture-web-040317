@@ -13,6 +13,7 @@ export default class StudentsPage extends Component {
     }
     this.addFido = this.addFido.bind(this)
     this.createStudent = this.createStudent.bind(this)
+    this.createStudentsFromAPI = this.createStudentsFromAPI.bind(this)
   }
 
   addFido(){
@@ -29,6 +30,18 @@ export default class StudentsPage extends Component {
         students: [...previousState.students, name]
       }
     })
+  }
+
+  createStudentsFromAPI(responseJSON){
+    this.setState({
+      students: responseJSON.map(student => student.name)
+    })
+  }
+
+  componentDidMount(){
+    fetch('http://localhost:3000/api/v1/students')
+      .then(response => response.json())
+      .then(responseJSON => this.createStudentsFromAPI(responseJSON))
   }
 
   render(){
