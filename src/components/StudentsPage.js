@@ -9,10 +9,16 @@ export default class StudentsPage extends Component {
   constructor(){
     super()
     this.state = {
-      students: ['Marianna', 'Tina', 'Matt']
+      students: []
     }
     this.addFido = this.addFido.bind(this)
     this.createStudent = this.createStudent.bind(this)
+  }
+
+  componentDidMount(){
+    fetch('http://localhost:3000/api/v1/students')
+      .then( res => res.json() )
+      .then( data => this.setState({ students: data}) )
   }
 
   addFido(){
@@ -24,11 +30,23 @@ export default class StudentsPage extends Component {
   }
 
   createStudent(name){
-    this.setState(function(previousState){
-      return {
-        students: [...previousState.students, name]
-      }
-    })
+    // here's where i want to make the post request to save the data...
+    fetch('http://localhost:3000/api/v1/students', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify({
+        student: {name: name}
+      })
+    }).then(response => response.json() )
+      .then(student => this.setState((previousState) => {
+        return {
+          students: [...previousState.students, student]
+        }
+      })
+    )
   }
 
   render(){

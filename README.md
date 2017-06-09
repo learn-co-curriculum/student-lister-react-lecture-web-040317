@@ -10,4 +10,22 @@ This means that, whenever the StudentPage mounts, we should make a web request t
 
 ### BONUS
 
-If you have the list showing up, we also should make a post request each time we submit our form to create a new student. 
+If you have the list showing up, we also should make a post request each time we submit our form to create a new student.
+
+
+### LifeCycle Methods
+
+#### Component Mounting for the first time
+0. constructor
+1. componentWillMount
+2. render
+3. componentDidMount
+  // is this a good place to fetch data?
+
+#### When the component is re-rendering
+
+0. componentWillReceiveProps
+1. shouldComponentUpdate
+2. componentWillUpdate
+3. render
+4. componentDidUpdate
