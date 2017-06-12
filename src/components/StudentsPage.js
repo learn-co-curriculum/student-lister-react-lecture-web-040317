@@ -11,7 +11,6 @@ export default class StudentsPage extends Component {
     this.state = {
       students: []
     }
-    this.addFido = this.addFido.bind(this)
     this.createStudent = this.createStudent.bind(this)
   }
 
