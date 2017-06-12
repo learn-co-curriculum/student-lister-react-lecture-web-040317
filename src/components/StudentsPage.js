@@ -47,8 +47,8 @@ export default class StudentsPage extends Component {
           < StudentsList students={this.state.students} />
         </div>
         <div className='col-md-8'>
-          < StudentForm onSubmit={this.createStudent}/>
-          < StudentCount count={this.state.students.length}/>
+          < StudentForm onSubmit={this.createStudent}/> // should only render if the path is `/students/new`
+          < StudentCount count={this.state.students.length}/> // should only render if the path is /students exactly
         </div>
       </div>
     )
