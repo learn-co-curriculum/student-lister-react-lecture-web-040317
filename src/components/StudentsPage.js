@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 
 import StudentCount from './StudentCount'
 import StudentForm from './StudentForm'
@@ -41,14 +42,19 @@ export default class StudentsPage extends Component {
   }
 
   render(){
+    console.log(this.props)
     return(
       <div className='row'>
         <div className='col-md-4'>
           < StudentsList students={this.state.students} />
         </div>
         <div className='col-md-8'>
-          < StudentForm onSubmit={this.createStudent}/> // should only render if the path is `/students/new`
-          < StudentCount count={this.state.students.length}/> // should only render if the path is /students exactly
+          <Route path='/students/new' render={() => <StudentForm onSubmit={this.createStudent}/>} />
+          <Route path='/students/:id' render={(props) => {
+            console.log(props)
+            return <p>Cool!</p>
+          }} />
+           < StudentCount count={this.state.students.length}/>
         </div>
       </div>
     )
