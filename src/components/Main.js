@@ -12,6 +12,7 @@ export default function Main(){
       <Route path="/about" render={() => {
         return <p>This is an app all about students</p>
       }} />
+      {/*<Route path="/" render={() => <h3>this is siiiiick</h3>} />*/}
     </div>
   )
 }
