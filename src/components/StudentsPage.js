@@ -14,6 +14,7 @@ export default class StudentsPage extends Component {
       students: []
     }
     this.createStudent = this.createStudent.bind(this)
+    this.deleteStudent = this.deleteStudent.bind(this)
   }
 
   componentDidMount(){
@@ -42,6 +43,18 @@ export default class StudentsPage extends Component {
     )
   }
 
+  deleteStudent(id){
+    // here, make a delete request to the API to remove that student from the database...
+    this.setState(function(previousState){
+      return {
+        students: previousState.students.filter(function(student){
+          return student.id !== id
+        })
+      }
+    })
+    this.props.history.push("/students")
+  }
+
   render(){
     return(
       <div className='row'>
@@ -54,10 +67,10 @@ export default class StudentsPage extends Component {
             <Route exact path='/students/:id' render={(routerProps) => {
               const id = routerProps.match.params.id
               const student = this.state.students.find( s =>  s.id === parseInt(id) )
-              return < StudentDetail student={student} />
+              return <StudentDetail student={student} deleteStudent={this.deleteStudent}/>
             }} />
           </Switch>
-           < StudentCount count={this.state.students.length}/>
+          <StudentCount count={this.state.students.length}/>
         </div>
       </div>
     )

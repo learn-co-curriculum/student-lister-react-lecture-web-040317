@@ -10,3 +10,12 @@
 ### Part 2.
 1. Each student show component should have a button that says 'delete this student'
 2. When we click it, we should delete that student from the database and then redirect them to '/students'
+
+
+### Post Lecture Challenge
+
+As a user, I should be able to edit an existing student.
+
+1. When the url is `/students/:id/edit` -> render an edit form component
+2. When the form is submitted, we should update the existing student in the database and redirect to '/students/:id'
+3. The form should be pre-populated with the values associated with that student
