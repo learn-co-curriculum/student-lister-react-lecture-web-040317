@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import StudentCount from './StudentCount'
 import StudentForm from './StudentForm'
 import StudentsList from './StudentsList'
+import StudentDetail from './StudentDetail'
 
 export default class StudentsPage extends Component {
 
@@ -42,18 +43,20 @@ export default class StudentsPage extends Component {
   }
 
   render(){
-    console.log(this.props)
     return(
       <div className='row'>
         <div className='col-md-4'>
           < StudentsList students={this.state.students} />
         </div>
         <div className='col-md-8'>
-          <Route path='/students/new' render={() => <StudentForm onSubmit={this.createStudent}/>} />
-          <Route path='/students/:id' render={(props) => {
-            console.log(props)
-            return <p>Cool!</p>
-          }} />
+          <Switch>
+            <Route exact path='/students/new' render={() => <StudentForm onSubmit={this.createStudent}/>} />
+            <Route exact path='/students/:id' render={(routerProps) => {
+              const id = routerProps.match.params.id
+              const student = this.state.students.find( s =>  s.id === parseInt(id) )
+              return < StudentDetail student={student} />
+            }} />
+          </Switch>
            < StudentCount count={this.state.students.length}/>
         </div>
       </div>

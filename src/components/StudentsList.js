@@ -6,7 +6,7 @@ export default function StudentsList(props){
     <div>
       <h2>Students List</h2>
       <ul>
-        { props.students.map((student) => <li key={student.id}>{ student.name }</li>)}
+        { props.students.map((student) => <li key={student.id}><Link to={`/students/${student.id}`}>{ student.name }</Link></li>)}
       </ul>
       <Switch>
         <Route path='/students/new' />

@@ -11,6 +11,7 @@ export default function NavBar(props){
         <ul className="nav navbar-nav">
           <li><Link to="/students">View All Students</Link></li>
           <li><Link to="/about">About</Link></li>
+          <li><Link to="/abasdfasdfadsfdsafout">Nothing</Link></li>
         </ul>
       </div>
     </nav>
