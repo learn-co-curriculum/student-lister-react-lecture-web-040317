@@ -5,6 +5,7 @@ import StudentCount from './StudentCount'
 import StudentForm from './StudentForm'
 import StudentsList from './StudentsList'
 import StudentDetail from './StudentDetail'
+import StudentEditForm from './StudentEditForm'
 
 export default class StudentsPage extends Component {
 
@@ -15,6 +16,7 @@ export default class StudentsPage extends Component {
     }
     this.createStudent = this.createStudent.bind(this)
     this.deleteStudent = this.deleteStudent.bind(this)
+    this.updateStudent = this.updateStudent.bind(this)
   }
 
   componentDidMount(){
@@ -56,6 +58,23 @@ export default class StudentsPage extends Component {
       })
   }
 
+  updateStudent(student){
+    // student {id: 32, name: "Ian Candi"}
+    console.log(student)
+    this.setState(function(previousState){
+      return {
+        students: previousState.students.map(function(s){
+          if (s.id !== student.id ) {
+            return s
+          } else {
+            return student
+          }
+        })
+      }
+    })
+    this.props.history.push(`/students/${student.id}`)
+  }
+
   render(){
     return(
       <div className='row'>
@@ -69,6 +88,14 @@ export default class StudentsPage extends Component {
               const id = routerProps.match.params.id
               const student = this.state.students.find( s =>  s.id === parseInt(id) )
               return <StudentDetail student={student} deleteStudent={this.deleteStudent}/>
+            }} />
+            <Route exact path='/students/:id/edit' render={(routerProps) => {
+              const id = routerProps.match.params.id
+              const student = this.state.students.find( s =>  s.id === parseInt(id) )
+              if (!student) {
+                return null
+              }
+              return <StudentEditForm student={student} updateStudent={this.updateStudent} />
             }} />
           </Switch>
           <StudentCount count={this.state.students.length}/>

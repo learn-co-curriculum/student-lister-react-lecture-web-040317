@@ -1,5 +1,23 @@
 # React CRUD
 
+### COMPONENT LIFECYCLE
+
+#### MOUNTING
+
+0. constructor
+1. componentWillMount
+2. render
+3. componentDidMount
+
+#### Re-rendering
+
+0. componentWillReceiveProps()
+1. shouldComponentUpdate()
+2. componentWillUpdate()
+3. render()
+4. componentDidUpdate()
+
+
 ## Post Lecture Challenge Review
 
 ### Part 1.
