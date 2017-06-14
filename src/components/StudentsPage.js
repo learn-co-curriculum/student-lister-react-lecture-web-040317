@@ -44,15 +44,16 @@ export default class StudentsPage extends Component {
   }
 
   deleteStudent(id){
-    // here, make a delete request to the API to remove that student from the database...
-    this.setState(function(previousState){
-      return {
-        students: previousState.students.filter(function(student){
-          return student.id !== id
+    fetch(`http://localhost:3000/api/v1/students/${id}`, {
+      method: 'DELETE'
+    }).then( () => {
+        this.setState( previousState => {
+          return {
+            students: previousState.students.filter( student => student.id !== id )
+          }
         })
-      }
-    })
-    this.props.history.push("/students")
+        this.props.history.push("/students")
+      })
   }
 
   render(){
