@@ -60,19 +60,29 @@ export default class StudentsPage extends Component {
 
   updateStudent(student){
     // student {id: 32, name: "Ian Candi"}
-    console.log(student)
-    this.setState(function(previousState){
-      return {
-        students: previousState.students.map(function(s){
-          if (s.id !== student.id ) {
-            return s
-          } else {
-            return student
-          }
-        })
-      }
+    fetch(`http://localhost:3000/api/v1/students/${student.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify({
+        student: {name: student.name}
+      })
+    }).then(() => {
+      this.setState(function(previousState){
+        return {
+          students: previousState.students.map(function(s){
+            if (s.id !== student.id ) {
+              return s
+            } else {
+              return student
+            }
+          })
+        }
+      })
+      this.props.history.push(`/students/${student.id}`)
     })
-    this.props.history.push(`/students/${student.id}`)
   }
 
   render(){
