@@ -21,18 +21,9 @@ export default class StudentsPageContainer extends Component {
       .then( data => this.setState({ students: data}) )
   }
 
-  createStudent(name){
+  createStudent(student){
     // here's where i want to make the post request to save the data...
-    fetch('http://localhost:3000/api/v1/students', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      },
-      body: JSON.stringify({
-        student: {name: name}
-      })
-    }).then(response => response.json() )
+    StudentsAdapter.create(student)
       .then(student => this.setState((previousState) => {
         return {
           students: [...previousState.students, student]
@@ -42,9 +33,8 @@ export default class StudentsPageContainer extends Component {
   }
 
   deleteStudent(id){
-    fetch(`http://localhost:3000/api/v1/students/${id}`, {
-      method: 'DELETE'
-    }).then( () => {
+    StudentsAdapter.destroy(id)
+      .then( () => {
         this.setState( previousState => {
           return {
             students: previousState.students.filter( student => student.id !== id )
@@ -56,16 +46,7 @@ export default class StudentsPageContainer extends Component {
 
   updateStudent(student){
     // student {id: 32, name: "Ian Candi"}
-    fetch(`http://localhost:3000/api/v1/students/${student.id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      },
-      body: JSON.stringify({
-        student: {name: student.name}
-      })
-    }).then(() => {
+    StudentsAdapter.update(student).then(() => {
       this.setState(function(previousState){
         return {
           students: previousState.students.map(function(s){

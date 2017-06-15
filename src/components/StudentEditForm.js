@@ -31,7 +31,7 @@ class StudentEditForm extends Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.updateStudent({
+    this.props.onSubmit({
       id: this.props.student.id,
       name: `${this.state.firstName} ${this.state.lastName}`
     })
@@ -43,7 +43,7 @@ class StudentEditForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <input type='text' placeholder="First Name" name="firstName" value={this.state.firstName} onChange={this.handleChange}/>
           <input type='text' placeholder="Last Name" name="lastName" value={this.state.lastName} onChange={this.handleChange}/>
-          <input type='submit' value="Edit Student" />
+          <input type='submit' value={this.props.submitText} />
         </form>
       </div>
     )
@@ -51,7 +51,7 @@ class StudentEditForm extends Component {
 }
 
 StudentEditForm.defaultProps = {
-  student: {name: 'First Last'}
+  student: {name: ' '}
 }
 
 export default StudentEditForm
