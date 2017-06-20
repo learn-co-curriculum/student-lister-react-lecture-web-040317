@@ -17,8 +17,12 @@ export default class StudentsPageContainer extends Component {
   }
 
   componentDidMount(){
-    StudentsAdapter.all()
-      .then( data => this.setState({ students: data}) )
+    if (!localStorage.getItem('user_id')) {
+      this.props.history.push('/login')
+    } else {
+      StudentsAdapter.all()
+        .then( data => this.setState({ students: data}) )
+    }
   }
 
   createStudent(student){

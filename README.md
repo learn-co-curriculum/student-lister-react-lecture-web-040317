@@ -11,3 +11,11 @@
 1. Visiting '/login' should display a form to login
 2. Submitting the form should make a post request to '/api/v1/auth'
 3. From there, save the info about the currentUser and redirect to '/students'
+
+
+### Logging a User In
+
+1. Make the request Client Side
+2. Handle the request Server Side
+3. Render a JSON response, server side
+4. Use that response client side 
