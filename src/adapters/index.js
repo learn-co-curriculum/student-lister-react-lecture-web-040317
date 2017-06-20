@@ -1,5 +1,15 @@
 const baseUrl = 'http://localhost:3000/api/v1'
 
+export class AuthAdapter {
+  static login(loginParams){
+    fetch(`${baseUrl}/auth`, {
+      method: 'POST',
+      headers: this.headers(),
+      body: JSON.stringify(loginParams)
+    }).then(res => res.json() )
+  }
+}
+
 export class StudentsAdapter  {
   static all(){
     return fetch(`${this.url()}`)
