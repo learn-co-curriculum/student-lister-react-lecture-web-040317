@@ -1,21 +1,5 @@
-# Auth
+# Auth Part Two
 
-1. Anytime someone visits my app, have they logged in before?
-2. If they have, who are they?
-3. If they have, are they allowed to do the thing that they're trying to do?
-4. If they haven't logged in before, and they try to do something that they are not allowed, redirect them to them login page
-
-
-## What URL will take us there?
-
-1. Visiting '/login' should display a form to login
-2. Submitting the form should make a post request to '/api/v1/auth'
-3. From there, save the info about the currentUser and redirect to '/students'
-
-
-### Logging a User In
-
-1. Make the request Client Side
-2. Handle the request Server Side
-3. Render a JSON response, server side
-4. Use that response client side 
+1. Review What We Did Yesterday - discuss why this is insecure
+2. Talk About JWT - replace storing the user id in local storage with the JWT token
+3. Implement a Higher Order Component to handle on the Client Side...

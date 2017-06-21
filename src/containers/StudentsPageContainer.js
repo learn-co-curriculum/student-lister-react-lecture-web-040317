@@ -26,7 +26,6 @@ export default class StudentsPageContainer extends Component {
   }
 
   createStudent(student){
-    // here's where i want to make the post request to save the data...
     StudentsAdapter.create(student)
       .then(student => this.setState((previousState) => {
         return {
@@ -49,7 +48,6 @@ export default class StudentsPageContainer extends Component {
   }
 
   updateStudent(student){
-    // student {id: 32, name: "Ian Candi"}
     StudentsAdapter.update(student).then(() => {
       this.setState(function(previousState){
         return {
