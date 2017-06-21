@@ -4,7 +4,9 @@ import {StudentsAdapter} from '../adapters'
 import StudentsPage from '../components/StudentsPage'
 // This component acts as a controller - fetches data and renders a view
 
-export default class StudentsPageContainer extends Component {
+import withAuth from '../hocs/withAuth'
+
+class StudentsPageContainer extends Component {
 
   constructor(){
     super()
@@ -17,12 +19,8 @@ export default class StudentsPageContainer extends Component {
   }
 
   componentDidMount(){
-    if (!localStorage.getItem('user_id')) {
-      this.props.history.push('/login')
-    } else {
-      StudentsAdapter.all()
-        .then( data => this.setState({ students: data}) )
-    }
+    StudentsAdapter.all()
+      .then( data => this.setState({ students: data}) )
   }
 
   createStudent(student){
@@ -71,3 +69,5 @@ export default class StudentsPageContainer extends Component {
                         createStudent={this.createStudent}/>
   }
 }
+
+export default withAuth(StudentsPageContainer)

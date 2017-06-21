@@ -21,15 +21,17 @@ class Main extends Component {
   }
 
   componentDidMount(){
-    if (localStorage.getItem('user_id')) {
+    if (localStorage.getItem('jwt')) {
       AuthAdapter.currentUser()
         .then(user => {
-          this.setState({
-            auth: {
-              isLoggedIn: true,
-              user: user
-            }
-          })
+          if (!user.error) {
+            this.setState({
+              auth: {
+                isLoggedIn: true,
+                user: user
+              }
+            })
+          }
         })
     }
   }
@@ -38,10 +40,11 @@ class Main extends Component {
     AuthAdapter.login(loginParams)
       .then( user => {
         if (!user.error) {
+          debugger
           this.setState({
             auth: { isLoggedIn: true, user: user}
           })
-          localStorage.setItem('user_id', user.id )
+          localStorage.setItem('jwt', user.jwt )
         }
       })
   }
@@ -57,7 +60,7 @@ class Main extends Component {
     return (
       <div>
         <NavBar title={title} style='inverse'/>
-        <Route path="/students" component={StudentsPageContainer} />
+        <Route path="/students" render={() => <StudentsPageContainer />} />
         <Route path="/about" render={() => {
           return <p>This is an app all about students</p>
         }} />
